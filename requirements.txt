@@ -1,0 +1,6 @@
+flask
+sqlbag[pg]
+migra
+pytest
+pytest-sugar
+flake8
