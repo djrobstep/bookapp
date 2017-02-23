@@ -2,11 +2,12 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.5
--- Dumped by pg_dump version 9.5.5
+-- Dumped from database version 9.6.1
+-- Dumped by pg_dump version 9.6.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -119,7 +120,7 @@ SELECT pg_catalog.setval('book_id_seq', 1, false);
 
 
 --
--- Name: author_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: author author_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY author
@@ -127,7 +128,7 @@ ALTER TABLE ONLY author
 
 
 --
--- Name: book_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: book book_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY book
@@ -135,7 +136,7 @@ ALTER TABLE ONLY book
 
 
 --
--- Name: book_author_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: book book_author_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY book

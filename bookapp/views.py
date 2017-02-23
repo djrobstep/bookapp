@@ -1,15 +1,15 @@
-from flask import jsonify, Blueprint
-from flask import current_app as app
+from flask import jsonify
 
 from .boilerplate import selectables
+from .application import app
+from sqlbag.flask import proxies
+
+s = proxies.s
 
 
-v = Blueprint('v', __name__)
-
-
-@v.route('/')
+@app.route('/')
 def home():
-    selectable_names = sorted(selectables(app.s))
+    selectable_names = sorted(selectables(s))
 
     if selectable_names:
         links = ['<a href="/{}">{}</a>'.format(n, n) for n in selectable_names]
@@ -19,12 +19,12 @@ def home():
     return '<h1 style="font-family: sans-serif;">{}</h1>'.format(contents)
 
 
-@v.route('/<string:thing>')
+@app.route('/<string:thing>')
 def things(thing):
-    selectable_names = set(selectables(app.s))
+    selectable_names = set(selectables(s))
     if thing in selectable_names:
         query = 'select * from {}'.format(thing)
-        results = app.s.execute(query)
+        results = s.execute(query)
         return jsonify([dict(x) for x in results])
     else:
         return 'Not found', 404
